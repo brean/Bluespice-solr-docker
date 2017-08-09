@@ -15,6 +15,7 @@ Configure the src/LocalSettings.php. You like to change the $wgDBpassword to you
 
 Installation
 ------------
+- install docker for your system (e.g. [Docker CE for Ubuntu](https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/))
 - run mysql
 ```
 docker run --name mysql-mediawiki -e MYSQL_ROOT_PASSWORD=PASSWORD -d mysql/mysql-server:5.7
