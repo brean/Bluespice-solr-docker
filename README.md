@@ -49,4 +49,5 @@ Make sure you setup the MySQL-Server first and verify that its ip is 172.17.0.2.
 
 Future Work
 -----------
-The configuration of the LocalSettings.php could be much nicer integrated with docker.
+The configuration of the LocalSettings.php could be much nicer integrated with docker and the mysql-user generation could be automated.
+An ansible and/or bash-script for this would be nice.
