@@ -41,6 +41,9 @@ sudo docker run -e MEDIAWIKI_DB_USER=wikiuser -e MEDIAWIKI_DB_PASSWORD=$MYSQL_US
 sudo docker run -e MEDIAWIKI_DB_USER=wikiuser -e MEDIAWIKI_DB_PASSWORD=$MYSQL_USER_PASSWORD --name wiki -p 3000:80 --link mysql-mediawiki:mysql --link bluespice-solr:solr -d mediawiki
 ```
 - go to the config-page of your newly installed wiki and configure the wiki: http://localhost:3000/ use the values provided by config.sh
+
+- (optional) configure your nginx to point to the correct page (e.g. [nginx_service.conf](https://gist.github.com/brean/e150a6ba3fa193e5fe6eb29f2f4d3046) )
+
 - save the LocalConfig.php in your users home/Downloads folder (firefox default) and deploy it to your mediawiki-docker installation:
 
 ```
@@ -50,9 +53,10 @@ sudo docker cp ~/Downloads/LocalSettings.php wiki:/var/www/html/LocalSettings.ph
 
 - create the database cache:
 ```
-sudo docker exec -it wiki bash
+sudo docker exec -it wiki php /var/www/html/extensions/BlueSpiceExtensions/ExtendedSearch/maintenance/searchUpdate.php
 ```
 
+- try searching for a single character to make sure the extended search is working.
 
 Future Work
 -----------
