@@ -26,7 +26,7 @@ sudo docker run --name bluespice-solr -d bluespice/solr:REL1_27
 ```
 sudo docker exec -it mysql-mediawiki mysql -u root -p$MYSQL_ROOT_PASSWORD -e "CREATE DATABASE mediawiki; CREATE USER 'wikiuser'@'%'  IDENTIFIED BY '$MYSQL_USER_PASSWORD'; GRANT ALL ON mediawiki.* TO 'wikiuser'@'%'";
 ```
-(You might want to write save the output of the config.sh-script to some file for later use)
+(You might want to save the output of the config.sh-script to some file for later use)
 
 - create the docker container
 ```
