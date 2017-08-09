@@ -36,10 +36,6 @@ sudo docker build -t mediawiki .
 ```
 sudo docker run -e MEDIAWIKI_DB_USER=wikiuser -e MEDIAWIKI_DB_PASSWORD=$MYSQL_USER_PASSWORD --name wiki -p 3000:80 --link mysql-mediawiki:mysql --link bluespice-solr:solr -d mediawiki
 ```
-- run the update-script:
-```
-sudo docker run -e MEDIAWIKI_DB_USER=wikiuser -e MEDIAWIKI_DB_PASSWORD=$MYSQL_USER_PASSWORD --name wiki -p 3000:80 --link mysql-mediawiki:mysql --link bluespice-solr:solr -d mediawiki
-```
 - go to the config-page of your newly installed wiki and configure the wiki: http://localhost:3000/ use the values provided by config.sh
 
 - (optional) configure your nginx to point to the correct page (e.g. [nginx_service.conf](https://gist.github.com/brean/e150a6ba3fa193e5fe6eb29f2f4d3046) )
