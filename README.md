@@ -19,21 +19,21 @@ Note that I default to german (de)!
 
 Installation
 ------------
-Note that I use two different MySQL-Passwords here: MYSQL_ROOT_PASSWORD and MYSQL_USER_PASSWORD. You maybe want to change those to something more useful.
+Note that I use two different MySQL-Passwords here: $MYSQL_ROOT_PASSWORD and $MYSQL_USER_PASSWORD. You want to set those to something more useful at the start.
 
 - install docker for your system (e.g. [Docker CE for Ubuntu](https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/))
 - run mysql 
 ```
-sudo docker run --name mysql-mediawiki -e MYSQL_ROOT_PASSWORD=MYSQL_ROOT_PASSWORD -d mysql/mysql-server:5.7
+sudo docker run --name mysql-mediawiki -e MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD -d mysql/mysql-server:5.7
 ```
 - run solr
 ```
 sudo docker run --name bluespice-solr -d bluespice/solr:REL1_27
 ```
-- configure the src/LocalSettings.php (or run `MYSQL_ROOT=MYSQL_ROOT_PASSWORD MYSQL_USER=MYSL_USER_PASSWORD sh config.sh` to change parts of the file automatically and create the MySQL-User)
+- configure the src/LocalSettings.php (or run `MYSQL_ROOT=$MYSQL_ROOT_PASSWORD MYSQL_USER=$MYSL_USER_PASSWORD sh config.sh` to change parts of the file automatically and create the MySQL-User)
 - If you did not run the config.sh-script you need to create the database and grant access rights to a new user on the mysql-server like this (Note that we allow access from ANY other ip in our local dockerverse, you might want to change that if you are sure about the IP of your mediawiki-server):
 ```
-sudo docker exec -it mysql-mediawiki mysql -u root -pMYSQL_ROOT_PASSWORD -e "CREATE DATABASE mediawiki; CREATE USER 'wikiuser'@'%'  IDENTIFIED BY 'MYSQL_USER_PASSWORD'; GRANT ALL ON mediawiki.* TO 'wikiuser'@'%'";
+sudo docker exec -it mysql-mediawiki mysql -u root -p$MYSQL_ROOT_PASSWORD -e "CREATE DATABASE mediawiki; CREATE USER 'wikiuser'@'%'  IDENTIFIED BY '$MYSQL_USER_PASSWORD'; GRANT ALL ON mediawiki.* TO 'wikiuser'@'%'";
 ```
 
 - create the docker container
@@ -42,13 +42,14 @@ sudo docker build -t mediawiki .
 ```
 - start the docker container (note that I forward to port 3000 because I use an nginx on the host machine that also provides other services)
 ```
-sudo docker run -e MEDIAWIKI_DB_USER=wikiuser -e MEDIAWIKI_DB_PASSWORD=MYSQL_USER_PASSWORD --name wiki -p 3000:80 --link mysql-mediawiki:mysql --link bluespice-solr:solr -d mediawiki
+sudo docker run -e MEDIAWIKI_DB_USER=wikiuser -e MEDIAWIKI_DB_PASSWORD=$MYSQL_USER_PASSWORD --name wiki -p 3000:80 --link mysql-mediawiki:mysql --link bluespice-solr:solr -d mediawiki
 ```
 - run the update-script:
 ```
-sudo docker run -e MEDIAWIKI_DB_USER=wikiuser -e MEDIAWIKI_DB_PASSWORD=MYSQL_USER_PASSWORD --name wiki -p 3000:80 --link mysql-mediawiki:mysql --link bluespice-solr:solr -d mediawiki
+sudo docker run -e MEDIAWIKI_DB_USER=wikiuser -e MEDIAWIKI_DB_PASSWORD=$MYSQL_USER_PASSWORD --name wiki -p 3000:80 --link mysql-mediawiki:mysql --link bluespice-solr:solr -d mediawiki
 ```
-- go to the config-page of your newly installed wiki and configure the solr-service.
+- go to the config-page of your newly installed wiki and configure the wiki:
+
 
 
 
