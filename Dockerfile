@@ -66,8 +66,8 @@ RUN echo Include /etc/apache2/mediawiki.conf >> /etc/apache2/apache2.conf
 COPY src/LocalSettings.php /usr/src/mediawiki/
 COPY src/BlueSpiceExtensions.local.php /usr/src/mediawiki/extensions/BlueSpiceExtensions/BlueSpiceExtensions.local.php
 
-RUN php /usr/src/mediawiki/maintenance/update.php --quick
-RUN cd /usr/src/mediawiki/ && php extensions/BlueSpiceExtensions/ExtendedSearch/maintenance/searchUpdate.php
+#RUN php /usr/src/mediawiki/maintenance/update.php --quick
+#RUN cd /usr/src/mediawiki/ && php extensions/BlueSpiceExtensions/ExtendedSearch/maintenance/searchUpdate.php
 
 COPY src/docker-entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
