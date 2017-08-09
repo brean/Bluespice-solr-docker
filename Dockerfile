@@ -63,7 +63,7 @@ RUN chmod g+w /tmp
 COPY src/mediawiki.conf /etc/apache2/
 RUN echo Include /etc/apache2/mediawiki.conf >> /etc/apache2/apache2.conf
 
-COPY src/LocalSettings.php /usr/src/mediawiki/
+#COPY src/LocalSettings.php /usr/src/mediawiki/
 COPY src/BlueSpiceExtensions.local.php /usr/src/mediawiki/extensions/BlueSpiceExtensions/BlueSpiceExtensions.local.php
 
 #RUN php /usr/src/mediawiki/maintenance/update.php --quick
