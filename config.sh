@@ -30,4 +30,4 @@ UPGRADE_KEY=`head -c8 </dev/urandom|xxd -p -u`
 sed -i 's/\$wgUpgradeKey.*/\$wgUpgradeKey = "'$UPGRADE_KEY'";/g' src/LocalSettings.php
 
 echo "update database"
-sudo docker exec -it mysql-mediawiki mysql -u root -p$MYSQL_ROOT -e "CREATE USER 'wikiuser'@'%'  IDENTIFIED BY '$MYSQL_USER'; GRANT ALL ON mediawiki.* TO 'wikiuser'@'%'"
+sudo docker exec -it mysql-mediawiki mysql -u root -p$MYSQL_ROOT -e "CREATE DATABASE mediawiki; CREATE USER 'wikiuser'@'%'  IDENTIFIED BY '$MYSQL_USER'; GRANT ALL ON mediawiki.* TO 'wikiuser'@'%'"
