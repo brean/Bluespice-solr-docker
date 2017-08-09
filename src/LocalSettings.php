@@ -53,7 +53,7 @@ $wgEmailAuthentication = true;
 $wgDBtype = "mysql";
 $wgDBserver = "172.17.0.2";
 $wgDBname = "mediawiki";
-$wgDBuser = "root";
+$wgDBuser = "wikiuser";
 $wgDBpassword = "SECRET";
 
 # MySQL specific settings
