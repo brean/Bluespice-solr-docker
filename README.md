@@ -30,7 +30,7 @@ sudo docker run --name mysql-mediawiki -e MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWO
 ```
 sudo docker run --name bluespice-solr -d bluespice/solr:REL1_27
 ```
-- configure the src/LocalSettings.php (or run `MYSQL_ROOT=$MYSQL_ROOT_PASSWORD MYSQL_USER=$MYSL_USER_PASSWORD sh config.sh` to change parts of the file automatically and create the MySQL-User)
+- configure the src/LocalSettings.php (or run `MYSQL_ROOT=$MYSQL_ROOT_PASSWORD MYSQL_USER=$MYSQL_USER_PASSWORD sh config.sh` to change parts of the file automatically and create the MySQL-User)
 - If you did not run the config.sh-script you need to create the database and grant access rights to a new user on the mysql-server like this (Note that we allow access from ANY other ip in our local dockerverse, you might want to change that if you are sure about the IP of your mediawiki-server):
 ```
 sudo docker exec -it mysql-mediawiki mysql -u root -p$MYSQL_ROOT_PASSWORD -e "CREATE DATABASE mediawiki; CREATE USER 'wikiuser'@'%'  IDENTIFIED BY '$MYSQL_USER_PASSWORD'; GRANT ALL ON mediawiki.* TO 'wikiuser'@'%'";
