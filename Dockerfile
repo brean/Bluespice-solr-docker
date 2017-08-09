@@ -63,11 +63,11 @@ RUN chmod g+w /tmp
 COPY src/mediawiki.conf /etc/apache2/
 RUN echo Include /etc/apache2/mediawiki.conf >> /etc/apache2/apache2.conf
 
-COPY src/LocalSettings.php /var/www/html/
-COPY src/BlueSpiceExtensions.local.php /var/www/html/extensions/BlueSpiceExtensions/BlueSpiceExtensions.local.php
+COPY src/LocalSettings.php /usr/src/mediawiki/
+COPY src/BlueSpiceExtensions.local.php /usr/src/mediawiki/extensions/BlueSpiceExtensions/BlueSpiceExtensions.local.php
 
-RUN php /var/www/html/maintenance/update.php --quick
-RUN cd /var/www/html/ && php extensions/BlueSpiceExtensions/ExtendedSearch/maintenance/searchUpdate.php
+RUN php /usr/src/mediawiki/maintenance/update.php --quick
+RUN cd /usr/src/mediawiki/ && php extensions/BlueSpiceExtensions/ExtendedSearch/maintenance/searchUpdate.php
 
 COPY src/docker-entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
