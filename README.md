@@ -6,7 +6,7 @@ Overview
 We will have three docker container:
 
 1. mysql-server running inside the first container that will provide the database for our mediawiki.
-1. a second docker container that we build ourself from the Dockerfile provided by this repo.
+1. a second docker container that provides us with the Bluespice wiki (you can build it yourself using the Dockerfile provided by this repo or use https://hub.docker.com/r/brean/bluespice-wikimedia/.
 1. a third docker container providing the solr service (we use the one [on the docker hub](https://hub.docker.com/r/bluespice/solr/) ).
 
 Installation
@@ -28,12 +28,14 @@ sudo docker exec -it mysql-mediawiki mysql -u root -p$MYSQL_ROOT_PASSWORD -e "CR
 ```
 (You might want to save the output of the config.sh-script to some file for later use)
 
-- create the docker container
+- start the docker container 
+```
+sudo docker run -e MEDIAWIKI_DB_USER=wikiuser -e MEDIAWIKI_DB_PASSWORD=$MYSQL_USER_PASSWORD --name wiki -p 3000:80 --link mysql-mediawiki:mysql --link bluespice-solr:solr -d brean/mediawiki
+```
+
+- (alternative!) create the docker container and start it
 ```
 sudo docker build -t mediawiki .
-```
-- start the docker container (note that I forward to port 3000 because I use an nginx on the host machine that also provides other services)
-```
 sudo docker run -e MEDIAWIKI_DB_USER=wikiuser -e MEDIAWIKI_DB_PASSWORD=$MYSQL_USER_PASSWORD --name wiki -p 3000:80 --link mysql-mediawiki:mysql --link bluespice-solr:solr -d mediawiki
 ```
 - go to the config-page of your newly installed wiki and configure the wiki: http://localhost:3000/ use the values provided by config.sh
