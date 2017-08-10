@@ -66,6 +66,11 @@ sudo docker cp ~/Downloads/LocalSettings.php wiki:/var/www/html/LocalSettings.ph
 sudo docker exec -it wiki php /var/www/html/extensions/BlueSpiceExtensions/ExtendedSearch/maintenance/searchUpdate.php
 ```
 
+- run an update (otherwise you will get an error when running a full search)
+```
+sudo docker exec -it wiki php maintenance/update.php
+```
+
 - try searching for a single character to make sure the extended search is working.
 
 Future Work
