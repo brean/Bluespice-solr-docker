@@ -11,7 +11,15 @@ We will have three docker container:
 
 Installation
 ------------
-Note that I use two different MySQL-Passwords here: $MYSQL_ROOT_PASSWORD and $MYSQL_USER_PASSWORD. You want to set those to something more useful at the start.
+Note that I use two different MySQL-Passwords here: $MYSQL_ROOT_PASSWORD and $MYSQL_USER_PASSWORD. 
+You want to set those to something more useful at the start for example:
+
+```
+MYSQL_USER_PASSWORD=`pwqgen`
+MYSQL_ROOT_PASSWORD=`pwqgen`
+echo $MYSQL_USER_PASSWORD
+echo $MYSQL_ROOT_PASSWORD
+```
 
 - install docker for your system (e.g. [Docker CE for Ubuntu](https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/))
 - run mysql 
