@@ -1,6 +1,8 @@
 # Bluespice-solr-docker
 Dockerfile and stuff to have a bluespice installation with solr running quickly - based on [aneesh14/docker-mediawiki](https://hub.docker.com/r/aneesh14/docker-mediawiki/)
 
+Note that I switched to run everything directly on the server using ansible without docker, see [brean/ansible-bluespice](https://github.com/brean/ansible-bluespice) because I had problems running XHProf on the debian-distro providing the mediawiki-service for performance debugging.
+
 Overview
 --------
 We will have three docker container:
